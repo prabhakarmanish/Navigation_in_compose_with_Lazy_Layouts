@@ -8,5 +8,7 @@ import androidx.compose.runtime.Composable
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopAppBar(title: String) {
-    TopAppBar(title = { Text(title) })
+    TopAppBar(
+        title = { Text(title) }
+    )
 }

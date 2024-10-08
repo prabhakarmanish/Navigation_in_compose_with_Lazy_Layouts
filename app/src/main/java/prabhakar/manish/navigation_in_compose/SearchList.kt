@@ -23,7 +23,6 @@ fun Searchinlazycolumn(grocery: List<Grocery>) {
     var searchText by remember { mutableStateOf("") }
     val filteredList = grocery.filter { it.gro.contains(searchText, ignoreCase = true) }
 
-    // SwipeRefresh(state = rememberSwipeRefreshState(isRefreshing), onRefresh = { refreshList() }) {
 
     Column {
         TextField(
@@ -35,7 +34,7 @@ fun Searchinlazycolumn(grocery: List<Grocery>) {
         )
         LazyColumn {
             items(filteredList) {
-                Text(it.gro, modifier = Modifier.padding(20.dp))
+                Text(it.gro, modifier = Modifier.padding(20.dp).fillMaxWidth())
             }
         }
     }

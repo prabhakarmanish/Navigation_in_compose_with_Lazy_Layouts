@@ -4,6 +4,10 @@ import GridPage
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,9 +19,11 @@ import prabhakar.manish.navigation_in_compose.Data.students
 @Composable
 fun NavigationComponent() {
     val navController = rememberNavController()
+    var toolbarTitle by remember { mutableStateOf("Navigation in Compose") }
+
     Scaffold(
         topBar = {
-            TopAppBar(title = "Navigation in Compose")
+            TopAppBar(title = toolbarTitle)
         }
     ) { innerPadding ->
         NavHost(
@@ -25,12 +31,30 @@ fun NavigationComponent() {
             startDestination = "main_screen",
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable("main_screen") { MainScreen(navController) }
-            composable("row_page") { RowPage(students) }
-            composable("column_page") { ColumnPage(employees) }
-            composable("grid_page") { GridPage(students) }
-            composable("staggered_list") { StaggeredList(employees) }
-            composable("search_in_lazy_column") { Searchinlazycolumn(groceries) }
+            composable("main_screen") {
+                MainScreen(navController)
+                toolbarTitle = "Main Screen"
+            }
+            composable("row_page") {
+                RowPage(students)
+                toolbarTitle = "Row Page"
+            }
+            composable("column_page") {
+                ColumnPage(employees)
+                toolbarTitle = "Column Page"
+            }
+            composable("grid_page") {
+                GridPage(students)
+                toolbarTitle = "Grid Page"
+            }
+            composable("staggered_list") {
+                StaggeredList(employees)
+                toolbarTitle = "Staggered List"
+            }
+            composable("search_in_lazy_column") {
+                Searchinlazycolumn(groceries)
+                toolbarTitle = "Search"
+            }
         }
     }
 }
